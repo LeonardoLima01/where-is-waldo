@@ -7,24 +7,30 @@ body {
 #root,
 .App {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #f1f1f1;
-  padding-top: 5px;
+  background-color: rgb(94, 20, 20);
+  color: #fff;
+  padding: 15px;
+}
+
+nav h1 {
+  margin: 0;
 }
 
 nav > img {
-  width: 80px;
+  width: 65px;
   height: 100%;
-  margin-right: 10px;
 }
 
 nav > h1 {
-  color: rgb(255, 106, 106);
+  color: rgb(255, 255, 255);
   font-size: 40px;
   margin-bottom: 0;
   margin-top: 0;
@@ -33,4 +39,20 @@ nav > h1 {
 
 .blue {
   color: rgb(0, 110, 255);
+}
+
+main {
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to the top */
+}
+
+main > img {
+  min-height: 100%;
+  max-width: 100%;
+}
+
+.timer-container {
+  font-size: 30px;
 }

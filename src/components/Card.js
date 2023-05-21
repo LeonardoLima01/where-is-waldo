@@ -1,3 +1,8 @@
-export default function Card() {
-  return <h1>card</h1>;
+export default function Card(props) {
+  return (
+    <div className="card">
+      <img src={props.img} />
+      <h1>Level {props.level}</h1>
+    </div>
+  );
 }

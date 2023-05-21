@@ -1,12 +1,12 @@
-import waldoLogo from "./../images/waldoLogo.jpg";
+import waldoLogo from "./../images/logo/waldoLogo.png";
+import Timer from "./Timer";
 
 export default function Nav() {
   return (
     <nav>
-      <img src={waldoLogo} alt="where is waldo main character" />
-      <h1>
-        <span className="blue">Where's </span> Waldo?
-      </h1>
+      <h1>Where's Everyone?</h1>
+      <Timer />
+      <div className="nav-characters-container"></div>
     </nav>
   );
 }

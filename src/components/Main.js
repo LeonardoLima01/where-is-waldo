@@ -1,11 +1,9 @@
-import Card from "./Card";
+import map from "./../images/map/map.jpg";
 
 export default function Main() {
   return (
     <main>
-      <Card />
-      <Card />
-      <Card />
+      <img src={map} />
     </main>
   );
 }
