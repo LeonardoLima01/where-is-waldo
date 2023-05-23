@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 html,
 body {
   margin: 0;
@@ -17,11 +23,7 @@ nav {
   align-items: center;
   background-color: rgb(94, 20, 20);
   color: #fff;
-  padding: 15px;
-}
-
-nav h1 {
-  margin: 0;
+  padding: 4px;
 }
 
 nav > img {
@@ -29,11 +31,10 @@ nav > img {
   height: 100%;
 }
 
-nav > h1 {
+nav h1 {
   color: rgb(255, 255, 255);
-  font-size: 40px;
-  margin-bottom: 0;
-  margin-top: 0;
+  font-size: 35px;
+  margin: 0;
   display: flex;
 }
 
@@ -42,6 +43,7 @@ nav > h1 {
 }
 
 main {
+  position: relative;
   overflow-y: scroll;
   display: flex;
   justify-content: center;
@@ -55,4 +57,68 @@ main > img {
 
 .timer-container {
   font-size: 30px;
+}
+
+.nav-dropdown-characters {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  right: 7.5%;
+  width: 15rem;
+  height: 25vh;
+  transform: translateY(5%);
+  background-color: #4e1700;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 12px 20px;
+  overflow: hidden;
+  gap: 12px;
+  z-index: 10;
+}
+
+.card {
+  display: flex;
+  height: 30%;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.card img {
+  height: 100%;
+  width: 60px;
+}
+
+.menu {
+  background-color: #612207;
+  height: "fit-content";
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.menu button {
+  border: 0;
+  background-color: #612207;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.menu button:hover {
+  background-color: #4e1700;
+}
+
+.found {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.hidden {
+  display: none;
 }
