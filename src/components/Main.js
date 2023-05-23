@@ -1,10 +1,12 @@
 import map from "./../images/map/map.jpg";
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
+import { getPercentageData } from "../firebase";
 
 export default function Main() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
+  let [foundCharacters, setFoundCharacters] = useState(0);
 
   // Hide/Show menu
   const toggleMenu = () => {
@@ -23,9 +25,6 @@ export default function Main() {
 
     // Hide/Show menu
     toggleMenu();
-
-    // TO DO: RECOGNIZE THAT THE CORRECT CHAR IS BEING CLICKED
-    // ADD TO LEADERBOARD, BLUR/GRAY SELECTED CHARS
   };
 
   useEffect(() => {
@@ -34,34 +33,82 @@ export default function Main() {
     }
   }, [clickCoordinates]);
 
-  const checkClick = (character) => {
+  useEffect(() => {
+    if (foundCharacters === 3) {
+      alert("Found everyone!!!!!");
+    }
+  }, [foundCharacters]);
+
+  let startX;
+  let endX;
+  let startY;
+  let endY;
+
+  const getCoordinates = async (character) => {
+    let startXpercentage = await getPercentageData(character, "startX");
+    let endXpercentage = await getPercentageData(character, "endX");
+    let startYpercentage = await getPercentageData(character, "startY");
+    let endYpercentage = await getPercentageData(character, "endY");
+
+    const screenWidth = window.innerWidth;
+    const screenHeight = document.querySelector("main img").height;
+
+    console.log("Screen Width: ", screenWidth);
+    console.log("Screen Height: ", screenHeight);
+    console.log(
+      startXpercentage,
+      endXpercentage,
+      startYpercentage,
+      endYpercentage
+    );
+
+    startX = screenWidth * startXpercentage;
+    endX = screenWidth * endXpercentage;
+    startY = screenHeight * startYpercentage;
+    endY = screenHeight * endYpercentage;
+  };
+
+  const checkClick = async (character) => {
     let x = clickCoordinates.x;
     let y = clickCoordinates.y;
+
     let batman = document.querySelector(".batman");
     let sonic = document.querySelector(".sonic");
     let waldo = document.querySelector(".waldo");
-    const screenWidth = window.innerWidth;
-    const screenHeight = document.querySelector("main img").height;
-    let minX = screenWidth * 0.084;
-    let maxX = screenWidth * 0.13;
-    let minY = screenHeight * 0.672;
-    let maxY = screenHeight * 0.685;
-
-    // console.log(minX, maxX, minY, maxY);
-
-    // console.log(screenWidth);
-    // console.log(screenHeight);
 
     if (character === "batman") {
-      if (x > minX && x < maxX && y > minY && y < maxY) {
+      await getCoordinates("batman");
+
+      if (x > startX && x < endX && y > startY && y < endY) {
         batman.className += " found";
         alert("Batman Found!!!");
         document.querySelector(".batman-button").style.display = "none";
+        setFoundCharacters((prevCount) => prevCount + 1);
       } else {
         alert("not Batman :(");
       }
     } else if (character === "sonic") {
+      await getCoordinates("sonic");
+
+      if (x > startX && x < endX && y > startY && y < endY) {
+        sonic.className += " found";
+        alert("Sonic Found!!!");
+        document.querySelector(".sonic-button").style.display = "none";
+        setFoundCharacters((prevCount) => prevCount + 1);
+      } else {
+        alert("not Sonic :(");
+      }
     } else {
+      await getCoordinates("waldo");
+
+      if (x > startX && x < endX && y > startY && y < endY) {
+        waldo.className += " found";
+        alert("Waldo Found!!!");
+        document.querySelector(".waldo-button").style.display = "none";
+        setFoundCharacters((prevCount) => prevCount + 1);
+      } else {
+        alert("not Waldo :(");
+      }
     }
   };
 
