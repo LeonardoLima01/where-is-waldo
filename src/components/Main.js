@@ -2,11 +2,14 @@ import map from "./../images/map/map.jpg";
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { getPercentageData } from "../firebase";
+import Modal from "./Modal";
+import LeaderboardModal from "./LeaderboardModal";
 
-export default function Main() {
+export default function Main(props) {
+  let { foundCharacters, setFoundCharacters, userTime } = props;
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
-  let [foundCharacters, setFoundCharacters] = useState(0);
 
   // Hide/Show menu
   const toggleMenu = () => {
@@ -31,6 +34,7 @@ export default function Main() {
     if (isMenuOpen) {
       console.log("CLICKED: ", clickCoordinates);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickCoordinates]);
 
   useEffect(() => {
@@ -113,13 +117,20 @@ export default function Main() {
   };
 
   return (
-    <main onClick={handleClick}>
+    <main
+      className={foundCharacters >= 3 ? "disable-scroll" : ""}
+      onClick={handleClick}
+    >
       <img src={map} alt="cartoon background with pop culture characters" />
       <Menu
         checkClick={checkClick}
         hidden={!isMenuOpen}
         position={clickCoordinates}
       />
+      {foundCharacters === 3 && (
+        <Modal userTime={userTime} setFoundCharacters={setFoundCharacters} />
+      )}
+      {foundCharacters === 4 && <LeaderboardModal />}
     </main>
   );
 }

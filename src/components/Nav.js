@@ -4,7 +4,9 @@ import batman from "./../images/characters/batman.png";
 import sonic from "./../images/characters/sonic.png";
 import waldo from "./../images/characters/waldo.png";
 
-export default function Nav() {
+export default function Nav(props) {
+  let { foundCharacters, setUserTime, userTime } = props;
+
   const handleClick = () => {
     let dropdownMenu = document.querySelector(".nav-dropdown-characters");
 
@@ -17,10 +19,17 @@ export default function Nav() {
     <>
       <nav>
         <h1>Where's Everyone?</h1>
-        <Timer />
-        <button onClick={handleClick}>Show chars</button>
+        <Timer
+          setUserTime={setUserTime}
+          userTime={userTime}
+          foundCharacters={foundCharacters}
+        />
+        <button className="nav-found-characters" onClick={handleClick}>
+          {3 - foundCharacters}
+        </button>
       </nav>
       <div className="nav-dropdown-characters">
+        <p>Chars to Find</p>
         <Card name="Batman" img={batman} />
         <Card name="Sonic" img={sonic} />
         <Card name="Waldo" img={waldo} />
