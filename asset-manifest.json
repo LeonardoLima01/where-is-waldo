@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/where-is-waldo/static/css/main.30496f24.css",
+    "main.js": "/where-is-waldo/static/js/main.b11fb40f.js",
+    "static/media/map.jpg": "/where-is-waldo/static/media/map.314cec99f414807b7e27.jpg",
+    "static/media/batman.png": "/where-is-waldo/static/media/batman.82e5049f0f5f57c58fc0.png",
+    "static/media/sonic.png": "/where-is-waldo/static/media/sonic.4a47ce681d2c805653e6.png",
+    "static/media/waldo.png": "/where-is-waldo/static/media/waldo.2e0a3ea05584dc12a4bd.png",
+    "index.html": "/where-is-waldo/index.html",
+    "main.30496f24.css.map": "/where-is-waldo/static/css/main.30496f24.css.map",
+    "main.b11fb40f.js.map": "/where-is-waldo/static/js/main.b11fb40f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30496f24.css",
+    "static/js/main.b11fb40f.js"
+  ]
+}
