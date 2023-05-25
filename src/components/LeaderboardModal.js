@@ -21,8 +21,6 @@ export default function LeaderboardModal() {
     fetchLeaderboardData();
   }, []);
 
-  console.log(leaderboard);
-
   return (
     <div className="modal-background">
       <div id="leaderboard-modal-container" className="modal-container">

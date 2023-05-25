@@ -266,3 +266,17 @@ main > img {
 .leaderboard-restart-button:hover {
   transform: scale(1.05);
 }
+
+.found-char-popup {
+  position: absolute;
+  top: 10%;
+  background-color: #aa4141;
+  padding: 0 10px;
+  border-radius: 5px;
+  z-index: 10;
+  color: #fff;
+  font-size: 15px;
+  left: 50%;
+  display: none;
+  font-weight: bold;
+}

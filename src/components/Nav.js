@@ -34,6 +34,9 @@ export default function Nav(props) {
         <Card name="Sonic" img={sonic} />
         <Card name="Waldo" img={waldo} />
       </div>
+      <div className="found-char-popup">
+        <p className="popup-text">Found someone!</p>
+      </div>
     </>
   );
 }
