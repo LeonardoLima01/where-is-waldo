@@ -3,7 +3,6 @@ import { useState } from "react";
 import Menu from "./Menu";
 import { getPercentageData } from "../firebase";
 import Modal from "./Modal";
-import LeaderboardModal from "./LeaderboardModal";
 
 export default function Main(props) {
   let { foundCharacters, setFoundCharacters, userTime } = props;
@@ -120,7 +119,6 @@ export default function Main(props) {
       {foundCharacters === 3 && (
         <Modal userTime={userTime} setFoundCharacters={setFoundCharacters} />
       )}
-      {foundCharacters === 4 && <LeaderboardModal />}
     </main>
   );
 }

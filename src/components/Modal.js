@@ -5,15 +5,10 @@ import LeaderboardModal from "./LeaderboardModal";
 export default function Modal(props) {
   const [submitted, setSubmitted] = useState(false);
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const username = document.querySelector(".modal-container input").value;
     await addToLeaderboard(e, username, props.userTime);
-    props.setFoundCharacters(4);
     setSubmitted(true);
   };
 
@@ -28,7 +23,7 @@ export default function Modal(props) {
             <button
               type="button"
               className="modal-cancel-button"
-              onClick={refreshPage}
+              onClick={() => setSubmitted(true)}
             >
               CANCEL
             </button>
