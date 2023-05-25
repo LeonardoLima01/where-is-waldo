@@ -30,7 +30,6 @@ const db = getFirestore(app);
 
 // Get data from firestore (percentage of the character on the screen)
 export const getPercentageData = async (character, location) => {
-  console.log(character);
   let collectionRef = collection(db, "characters");
   let characterRef = doc(collectionRef, character);
   let locationRef = collection(characterRef, "location");

@@ -1,5 +1,5 @@
 import map from "./../images/map/map.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Menu from "./Menu";
 import { getPercentageData } from "../firebase";
 import Modal from "./Modal";
@@ -30,18 +30,17 @@ export default function Main(props) {
     toggleMenu();
   };
 
-  useEffect(() => {
-    if (isMenuOpen) {
-      console.log("CLICKED: ", clickCoordinates);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickCoordinates]);
+  const showFoundSomeonePopup = (found, char) => {
+    let popup = document.querySelector(".found-char-popup");
+    let text = document.querySelector(".popup-text");
 
-  useEffect(() => {
-    if (foundCharacters === 3) {
-      alert("Found everyone!!!!!");
-    }
-  }, [foundCharacters]);
+    text.textContent = found ? `You found ${char}` : "Keep searching!";
+
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 2000);
+  };
 
   let startX;
   let endX;
@@ -56,15 +55,6 @@ export default function Main(props) {
 
     const screenWidth = window.innerWidth;
     const screenHeight = document.querySelector("main img").height;
-
-    console.log("Screen Width: ", screenWidth);
-    console.log("Screen Height: ", screenHeight);
-    console.log(
-      startXpercentage,
-      endXpercentage,
-      startYpercentage,
-      endYpercentage
-    );
 
     startX = screenWidth * startXpercentage;
     endX = screenWidth * endXpercentage;
@@ -85,33 +75,33 @@ export default function Main(props) {
 
       if (x > startX && x < endX && y > startY && y < endY) {
         batman.className += " found";
-        alert("Batman Found!!!");
         document.querySelector(".batman-button").style.display = "none";
         setFoundCharacters((prevCount) => prevCount + 1);
+        showFoundSomeonePopup(true, "Batman");
       } else {
-        alert("not Batman :(");
+        showFoundSomeonePopup(false);
       }
     } else if (character === "sonic") {
       await getCoordinates("sonic");
 
       if (x > startX && x < endX && y > startY && y < endY) {
         sonic.className += " found";
-        alert("Sonic Found!!!");
         document.querySelector(".sonic-button").style.display = "none";
         setFoundCharacters((prevCount) => prevCount + 1);
+        showFoundSomeonePopup(true, "Sonic");
       } else {
-        alert("not Sonic :(");
+        showFoundSomeonePopup(false);
       }
     } else {
       await getCoordinates("waldo");
 
       if (x > startX && x < endX && y > startY && y < endY) {
         waldo.className += " found";
-        alert("Waldo Found!!!");
         document.querySelector(".waldo-button").style.display = "none";
         setFoundCharacters((prevCount) => prevCount + 1);
+        showFoundSomeonePopup(true, "Waldo");
       } else {
-        alert("not Waldo :(");
+        showFoundSomeonePopup(false);
       }
     }
   };
